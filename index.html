@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#101114" />
+  <title>Fight Night — MMA Championship</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell menu-open">
+    <canvas id="game" aria-label="Combate de MMA"></canvas>
+
+    <header class="topbar">
+      <button class="brand" id="homeButton" aria-label="Volver al menú"><span class="brand-mark">FN</span><span>FIGHT NIGHT<small>CHAMPIONSHIP</small></span></button>
+      <div class="fight-info"><span id="roundLabel">RONDA 1 / 3</span><strong id="clock">03:00</strong><span id="fightStatus">COMBATE EN VIVO</span></div>
+      <button class="pause-button" id="pauseButton" aria-label="Pausar">Ⅱ</button>
+    </header>
+
+    <section class="hud" aria-label="Estado del combate">
+      <div class="fighter-hud player-hud">
+        <div class="fighter-line"><span class="corner-tag blue">ESQUINA AZUL</span><strong id="playerName">EL JUGADOR</strong></div>
+        <div class="meter"><span class="meter-fill health-fill" id="playerHealth"></span><b>VIDA</b></div>
+        <div class="mini-meters"><div class="meter stamina"><span class="meter-fill" id="playerStamina"></span><b>RESISTENCIA</b></div><div class="meter body"><span class="meter-fill" id="playerBody"></span><b>DAÑO</b></div></div>
+      </div>
+      <div class="vs">VS</div>
+      <div class="fighter-hud enemy-hud">
+        <div class="fighter-line"><strong id="enemyName">THE VETERAN</strong><span class="corner-tag red">ESQUINA ROJA</span></div>
+        <div class="meter"><span class="meter-fill health-fill" id="enemyHealth"></span><b>VIDA</b></div>
+        <div class="mini-meters"><div class="meter stamina"><span class="meter-fill" id="enemyStamina"></span><b>RESISTENCIA</b></div><div class="meter body"><span class="meter-fill" id="enemyBody"></span><b>DAÑO</b></div></div>
+      </div>
+    </section>
+
+    <div class="combo-toast" id="comboToast"></div>
+    <div class="round-break" id="roundBreak"><div class="break-card"><span>ENTRE ASALTOS</span><strong>RECUPERA EL ALIENTO</strong><button id="continueButton">SIGUIENTE ASALTO →</button></div></div>
+    <div class="result-screen" id="resultScreen"><div class="result-card"><span class="eyebrow" id="resultEyebrow">COMBATE FINALIZADO</span><h1 id="resultTitle">VICTORIA</h1><p id="resultText">Por KO · Ronda 1</p><button id="rematchButton">REVANCHA</button><button class="text-button" id="menuButton">VOLVER AL MENÚ</button></div></div>
+
+    <section class="controls" id="controls" aria-label="Controles táctiles">
+      <div class="movement-zone">
+        <div class="stick" id="stick"><div class="stick-ring"><span class="stick-arrow up">▲</span><span class="stick-arrow left">◀</span><span class="stick-arrow right">▶</span><span class="stick-arrow down">▼</span><div class="stick-knob" id="stickKnob"></div></div></div>
+        <div class="move-caption">MOVER</div>
+      </div>
+      <div class="utility-buttons">
+        <button class="control-btn utility" data-action="block"><span>▣</span><small>BLOCK</small></button>
+        <button class="control-btn utility" data-action="dodge"><span>↝</span><small>DODGE</small></button>
+        <button class="control-btn utility grab" data-action="grab"><span>✊</span><small>GRAB</small></button>
+        <button class="control-btn utility takedown" data-action="takedown"><span>⇣</span><small>TAKEDOWN</small></button>
+      </div>
+      <div class="attack-buttons">
+        <button class="control-btn attack jab" data-action="jab"><span>J</span><small>JAB</small></button>
+        <button class="control-btn attack cross" data-action="cross"><span>C</span><small>CROSS</small></button>
+        <button class="control-btn attack hook" data-action="hook"><span>H</span><small>HOOK</small></button>
+        <button class="control-btn attack uppercut" data-action="uppercut"><span>U</span><small>UPPERCUT</small></button>
+        <button class="control-btn attack lowkick" data-action="lowkick"><span>↗</span><small>LOW KICK</small></button>
+        <button class="control-btn attack highkick" data-action="highkick"><span>✦</span><small>HIGH KICK</small></button>
+        <button class="control-btn special" data-action="special"><span>⚡</span><small>SPECIAL</small><b class="charge-bar"><i id="specialFill"></i></b></button>
+      </div>
+    </section>
+
+    <section class="menu-screen" id="menuScreen">
+      <div class="menu-copy"><div class="overline"><span></span> MMA · BOXING · CHAMPIONSHIP</div><h1>FIGHT<br/><em>NIGHT</em></h1><p>El octágono no espera.<br/>Demuestra de qué estás hecho.</p><div class="mode-select"><button class="mode active" data-mode="quick"><strong>COMBATE RÁPIDO</strong><small>Una pelea. Sin excusas.</small></button><button class="mode" data-mode="training"><strong>ENTRENAMIENTO</strong><small>Practica sin límite de tiempo.</small></button><button class="mode" data-mode="championship"><strong>CAMPEONATO</strong><small>Conquista tres desafíos.</small></button><button class="mode" data-mode="career"><strong>CARRERA</strong><small>De amateur a campeón.</small></button></div><button class="start-button" id="startButton">ENTRAR AL OCTÁGONO <span>→</span></button><div class="menu-hint">WASD / FLECHAS PARA MOVER · U I O P PARA GOLPEAR</div></div>
+      <div class="menu-fighter" aria-hidden="true"><div class="poster-number">01</div><div class="poster-rule"></div><div class="fighter-caption"><b>EL DESAFIANTE</b><span>RÉCORD 0 — 0 — 0</span></div></div>
+    </section>
+
+    <div class="mobile-hint" id="mobileHint">Desliza el joystick para moverte · toca los botones para luchar</div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
